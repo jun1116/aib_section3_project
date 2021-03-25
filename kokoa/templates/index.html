@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    <title>Welcome to Talk</title>
+</head>
+<body>
+    <div class='status-bar'>
+        <div class="status-bar__column">
+            <span>No Service</span>
+            <i class="fas fa-wifi"></i>
+        </div>
+        <div class="status-bar__column">
+            <span>18:43</span>
+        </div>
+        <div class="status-bar__column">
+            <span>110%</span>
+            <i class="fas fa-battery-full fa-lg"></i>
+            <i class="fas fa-bolt"></i> 
+        </div>
+    </div>
+    <header class="welcome-header">
+        <h1 class="welcome-header__title" >Welcome to Kokoa Clone</h1>
+        <p class="welcome-header__text" >If you have a Kokoa Account, log in with your email or phone number.</p>
+    </header>
+
+    <!-- <form id="login-form" action="{{ url_for('main.signup') }}" method="post"> -->
+    <form name='form' id="login-form" method="post">
+        <input name="username" type="text" required placeholder="Name"/>
+        <input name = "password" type="text" required placeholder="Password"/>
+        <input type='submit' value="Log In" onclick="javascript: form.action='/login';" />
+        <input type='submit' value="Sign Up" onclick="javascript: form.action='/signup';"/>
+        <a href="#">Find Kokoa Account or Password</a>
+    </form>
+   
+    <!-- <div class="no-mobile">
+        <span>Your screen too big</span>
+    </div> -->
+
+    <script src="https://kit.fontawesome.com/7d7d69e213.js" crossorigin="anonymous">
+    </script>
+</body>
+</html>

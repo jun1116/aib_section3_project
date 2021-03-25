@@ -1,0 +1,24 @@
+.no-mobile {
+  /* 일단 제일 위에 오도록 */
+  position: absolute;
+  z-index: 90;
+  /* 화면 가득 채우고, 노란색 */
+  width: 100%;
+  height: 100%;
+  background-color: var(--yellow);
+  top: 0;
+  left: 0;
+  /* 글자를 정 중앙에 배치, 사이즈조정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+}
+
+/* 최대 645px까지는 display하지 말라는뜻 
+645보다 작아지는순간 display : flex됨*/
+@media screen and (max-width: 645px) {
+  .no-mobile {
+    display: none;
+  }
+}

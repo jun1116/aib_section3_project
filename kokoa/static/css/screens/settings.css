@@ -1,0 +1,33 @@
+.settings-list {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.settings__setting {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings__setting i {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  font-size: 22px;
+}
+.settings-setting-column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.alt__notification {
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.settings-setting-column:last-child {
+  opacity: 0.5;
+}

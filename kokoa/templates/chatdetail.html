@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet"/>
+        <title>Chat - Kokoa Clone</title>
+    </head>
+    <body class="chat-screen">
+        <div class='status-bar' OnClick="location.href='{{ url_for('main.logout') }}'">
+            <div class="status-bar__column">
+                <span>No Service</span>
+                <i class="fas fa-wifi"></i>
+            </div>
+            <div id='current-time' class="status-bar__column">
+                <span>18:43</span>
+            </div>
+            <div class="status-bar__column">
+                <span>110%</span>
+                <i class="fas fa-battery-full fa-lg"></i>
+                <i class="fas fa-bolt"></i> 
+            </div>
+        </div>
+    
+        <header class="alt-header">
+            <div class="alt-header__column">
+                <a href="chats.html">
+                    <i class="fas fa-angle-left fa-2x"></i>
+                </a>
+            </div>
+            <div class="alt-header__column">
+                <h1 class="alt-header__title">{{(companyname)}}</h1>
+            </div>
+            <div class="alt-header__column">
+                <span>
+                    <i class="fas fa-search fa-lg"></i>
+                </span>
+                <span>
+                    <i class="fas fa-bars fa-lg"></i>
+                </span>
+            </div>
+        </header>
+        
+        <main class="main-screen main-chat">
+            <div class="chat__timestamp">Tuesday, June 30, 2020</div>
+            {%for chat in chats%}
+            {% if chat.isuser == 0 %}
+            <div class="message-row">
+                <img src="{{ url_for('static', filename='images/seoul_bike.png') }}" alt="">
+                <div class="message-row__content">
+                    <span class="message__author">{{companyname}}</span>
+                    <div class="message__info">
+                        <span class="message__bubble">{{chat.text}}</span>
+                        <span class="message__time">{{chat.time.hour}}:{{chat.time.minute}}</span>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="message-row message-row--own">
+                <div class="message-row__content">
+                    <div class="message__info">
+                        <span class="message__bubble">{{chat.text}}</span>
+                        <span class="message__time">{{chat.time.hour}}:{{chat.time.minute}}</span>
+                    </div>
+                </div>
+            </div>
+            {%endif%}
+            {% endfor %}
+        </main>
+        <form value='rommmmm' class="reply" method='POST' action="{{ url_for('chat.reply') }}" accept-charset="utf-8">
+            <div class="reply__column">
+                <i class="far fa-plus-square fa-lg"></i>
+            </div>
+            <div class="reply__column">
+                <input name='reply' type='text' placeholder="Write a message..." />
+                <i class="far fa-smile-beam fa-lg"></i>
+                <button type='submit'>
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </form>
+        <div class="no-mobile">
+            <span>Your screen too big</span>
+        </div>
+        <script src="https://kit.fontawesome.com/7d7d69e213.js" crossorigin="anonymous"></script>
+
+        <script type="text/javascript", src='./index.js'></script>
+</body>
+</html>

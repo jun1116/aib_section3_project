@@ -1,0 +1,216 @@
+.chat-screen {
+  background-color: #abc1d1;
+  height: 500vh;
+}
+
+.chat-screen .alt-header,
+.chat-screen .status-bar {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #abc1d1;
+  box-sizing: border-box;
+}
+.chat-screen .status-bar {
+  top: 0px;
+  z-index: 2;
+}
+
+.chat-screen .alt-header {
+  position: fixed;
+  top: 15px;
+  z-index: 1;
+}
+
+@keyframes fadeIn-chat {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main-chat {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chat__timestamp {
+  color: white;
+  background-color: #92a4b2;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 24px;
+  margin-bottom: 25px;
+  animation: fadeIn-chat 1s linear;
+}
+@keyframes commingMessage {
+  from {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+.message-row {
+  width: 100%;
+  display: flex;
+  margin-bottom: 23px;
+  animation: commingMessage 0.5s linear;
+}
+
+.message-row img {
+  width: 50px;
+  height: 50px;
+  border-radius: 45%;
+  margin-right: 15px;
+}
+
+.message__author {
+  opacity: 0.8;
+  font-size: 18px;
+  display: block; /*span 은 기본적으로 블록형태가 아니라서 margin-bottom을 줄 수 없어.*/
+  margin-bottom: 8px;
+}
+
+.message__bubble {
+  background-color: white;
+  padding: 13px;
+  border-radius: 15px;
+  border-top-left-radius: 0px;
+  margin-right: 7px;
+  margin-bottom: 5px;
+}
+.message__info {
+  display: flex;
+  align-items: flex-end;
+}
+.message__time {
+  opacity: 0.8;
+  font-size: 15px;
+}
+/* 내가 작성하는 메시지 css */
+@keyframes ownMessage {
+  from {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.message-row--own {
+  justify-content: flex-end;
+  animation: ownMessage 0.5s linear;
+}
+
+.message-row--own .message__bubble {
+  background-color: var(--yellow);
+  border-top-right-radius: 0px;
+  border-top-left-radius: 15px;
+
+  /* 시간이랑 말풍선 위치 바꾸는 1번 방법
+  order: 1; */
+
+  /* 시간이랑 말풍선 위치 바꾸는 2번 방법*/
+  margin-right: 0px;
+  margin-left: 10px;
+}
+
+/* 시간이랑 말풍선 위치 바꾸는 1번 방법
+.message-row--own .message__time {
+  order: 0;
+}
+*/
+
+/* 시간이랑 말풍선 위치 바꾸는 2번 방법*/
+.message-row--own .message__info {
+  flex-direction: row-reverse;
+}
+.reply {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 25px;
+  align-items: center;
+  box-sizing: border-box;
+  /* 인풋창 클릭시 transitio 처리 방법 중 하나 */
+  transition: all 0.3s ease-in-out;
+}
+.reply input {
+  padding: 10px;
+  width: 95%;
+  border: var(--main-border);
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: 550;
+  transition: all 0.3s ease-in-out;
+}
+.reply .reply__column:first-child {
+  width: 10%;
+}
+
+.reply .reply__column:last-child {
+  width: 90%;
+  position: relative;
+}
+
+.reply__column:last-child > i,
+.reply__column:last-child button {
+  position: absolute;
+  /* 버튼 위치조정 */
+  right: 5px;
+  top: 7px;
+}
+
+.reply__column:last-child > i {
+  top: 15px;
+  right: 39px;
+}
+.reply__column button {
+  background-color: var(--yellow);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.reply__column button:focus,
+.reply__column button:active {
+  outline: none;
+}
+.reply__column > i {
+  opacity: 0.7;
+}
+
+/* focus-within옵션-> 인풋창을 클릭하면 바로 늘어나면서, 버튼이랑 이모티콘이 사라짐 */
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-smile-beam,
+.reply:focus-within button {
+  opacity: 0;
+  visibility: hidden;
+}
+/* .reply:focus-within input {  이렇게 작성해도 바로 밑에 있는 input:focus와 같음*/
+.reply input:focus {
+  width: 92vw;
+  transform: translateX(-13%) translateY(-80px);
+}
+/* 아이콘 사라질 때 좀더 깐지나게 */
+.reply .reply__column:first-child,
+.reply .fa-smile-beam,
+.reply button {
+  transition: opacity 1.5s ease-in-out;
+}
+/* 인풋창 클릭하면 흰색배경 밑으로 내려가게! */
+.reply:focus-within {
+  transform: translateY(80px);
+}
