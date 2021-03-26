@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    <title>Friends - Kokoa Clone</title>
+</head>
+<body>
+    <div class='status-bar' OnClick="location.href='{{ url_for('main.logout') }}'">
+        <div class="status-bar__column">
+            <span>No Service</span>
+            <i class="fas fa-wifi"></i>
+        </div>
+        <div class="status-bar__column">
+            <span>22:22</span>
+        </div>
+        <div class="status-bar__column">
+            <span>110%</span>
+            <i class="fas fa-battery-full fa-lg"></i>
+            <i class="fas fa-bolt"></i> 
+        </div>
+    </div>
+    
+    {% block content %}
+    {% endblock %}
+
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__btn"><a class="nav__link" href="{{ url_for('main.login') }}"><i class="fas fa-user fa-2x"></i></a></li>
+            <li class="nav__btn"><a class="nav__link" href="{{ url_for('chat.chats') }}">
+                <span class="nav__notification badge">1</span>
+                <i class="far fa-comment fa-2x"></i></a></li>
+            <li class="nav__btn"><a class="nav__link" href="find.html"><i class="fas fa-search fa-2x"></i></a></li>
+            <li class="nav__btn"><a class="nav__link" href="more.html">
+                <div class="nav__notification__little"></div>
+                <i class="fas fa-ellipsis-h fa-2x"></i></a></li>
+        </ul>
+    </nav>
+
+    <div id="splash-screen">
+        <i class="fas fa-comment "></i>
+    </div>
+
+    <div class="no-mobile">
+        <span>Your screen too big</span>
+    </div>
+    <script src="https://kit.fontawesome.com/7d7d69e213.js" crossorigin="anonymous">
+    </script>
+</body>
+</html>

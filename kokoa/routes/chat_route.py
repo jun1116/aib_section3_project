@@ -33,6 +33,9 @@ def reply():
     print('세션에 남은 룸아이디',session['room_id'])
     # print(data)
     db.session.add(Chat(room_id=session['room_id'], text=text, isuser=1))
+
+    # TODO : 회사의 답변을 등록해야함
+
     db.session.commit()
     return chatdetail(session['room_id'])
 
@@ -42,10 +45,10 @@ def deletechat():
     # print(session['room_id'])
     room = Room.query.get(session['room_id'])
     db.session.delete(room)
-    # db.session.commit()
+    db.session.commit()
     return chats()
 
-@bp.route('/chatstart', methods=['GET'])
+@bp.route('/chatstart', methods=['GET']) #Friends화면의 회사를 눌러서 채팅 시작 -> 채팅이 이미 있는경우 해당 방 입장, 없는경우 방생성 & 환영인사생성
 def chatstart():
     # get_company = request.args['company']
     # company_id = int(get_company.split()[3][0])

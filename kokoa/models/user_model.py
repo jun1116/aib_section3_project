@@ -38,7 +38,7 @@ class Chat(db.Model):
     text= db.Column(db.String(150), nullable=False)
     room_id = db.Column(db.Integer(), db.ForeignKey('room.id', ondelete='CASCADE'))
     isuser = db.Column(db.Boolean(), nullable=False)
-    time = db.Column(db.DateTime, default=datetime.utcnow)
+    time = db.Column(db.DateTime, default=datetime.now)
     room = db.relationship('Room', backref=db.backref('chats', cascade='all, delete-orphan'))
     def __repr__(self):
         return f"chat_id : {self.id}, text : {self.text}, room_id : {self.room_id}"

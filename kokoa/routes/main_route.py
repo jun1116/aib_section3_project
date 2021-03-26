@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, session, g, url_for
 # from twit_app.utils import main_funcs
-from kokoa.models.user_model import User, Company
+from kokoa.models.user_model import User, Company, Room
 # from kokoa.forms import UserCreateForm
 # from services.embedding_api import compare
 
@@ -35,13 +35,13 @@ def signup():
                 password=generate_password_hash(password))
             db.session.add(user)
             db.session.commit()
-            return 'User 생성완료'
+            return f'<script> alert("유저 생성 완료. ID : {username}, PASSWORD : {password}"); location.href="/" </script>'
             # return redirect(url_for('main.index'))
         else: #유저가 이미 존재함 -> 뒤로가기
             return f'<script> alert("이미 존재하는 user입니다. 다른 이름을 입력하세요"); location.href="/" </script>'
             # flash('이미 존재하는 사용자입니다')
             # return '이미 존재하는 username입니다.'
-    return 'gggggg'
+    return f'<script> alert("오류. 다시 시작하세요"); location.href="/" </script>'
 
 # @bp.route('/logedin/')
 # def logedin():
@@ -56,7 +56,7 @@ def login():
     print(session)
     if session.get('user_id'):# 이미 로그인 된 경우
         user = User.query.get(session['user_id'])
-        return render_template('friends.html',user=user, g=g, companys=companys)
+        return render_template('friends_ex.html',user=user, g=g, companys=companys)
 
     username=request.form['username']
     password=request.form['password']
@@ -70,7 +70,7 @@ def login():
             session.clear()
             session['user_id'] = user.id
             print(session, g)
-            return render_template('friends.html',user=user, g=g, companys=companys)
+            return render_template('friends_ex.html',user=user, g=g, companys=companys)
         else:
             # 'password 가 틀렸습니다.'
             return f'<script> alert("비밀번호가 틀렸습니다."); location.href="/" </script>'
@@ -83,7 +83,24 @@ def logout():
     print(session)
     return redirect(url_for('main.index'))
 
+@bp.route('/usersetting')
+def usersetting():
+    print('USER SETTING PAGE')
+    return render_template('settings.html')
 
+@bp.route('/userdelete')
+def userdelete():
+    print("User Delete Page")
+    user_id = session['user_id']
+    # print(user_id)
+    user = User.query.get(user_id)
+    rooms = Room.query.filter(Room.user_id==user_id).all()
+    # print(rooms)
+    db.session.delete(user)
+    for room in rooms:
+        db.session.delete(room)
+    db.session.commit()
+    return logout()
 # @bp.route('/friends/')
 # def 
 

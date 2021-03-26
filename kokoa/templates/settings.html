@@ -1,0 +1,152 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet"/>
+        <title>Setting - Kokoa Clone</title>
+    </head>
+    <body>
+        <div class='status-bar'>
+            <div class="status-bar__column">
+                <span>No Service</span>
+                <i class="fas fa-wifi"></i>
+            </div>
+            <div class="status-bar__column">
+                <span>18:43</span>
+            </div>
+            <div class="status-bar__column">
+                <span>110%</span>
+                <i class="fas fa-battery-full fa-lg"></i>
+                <i class="fas fa-bolt"></i> 
+            </div>
+        </div>
+     -->
+    {% extends 'base/base.html' %}
+    {% block content%}  
+        <header class="alt-header">
+            <div class="alt-header__column">
+                <a href="{{url_for('main.login')}}">
+                    <i class="fas fa-angle-left fa-3x"></i>
+                </a>
+            </div>
+            <div class="alt-header__column">
+                <h1 class="alt-header__title">Settings</h1>
+            </div>
+            <div class="alt-header__column">
+                <i class="fas fa-search fa-2x"></i>
+            </div>
+        </header>
+        
+        <main class="main-screen">
+            <ul class="settings-list">
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <a href="{{url_for('main.logout')}}">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>로그아웃</span>
+                        </a>
+                    </div>
+                    <div class="settings-setting-column"> </div>
+
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <a href="{{url_for('main.userdelete')}}">
+                            <i class="fas fa-flask"></i>
+                            <span>계정 삭제(취소 불가)</span>
+                        </a>
+                    </div>
+                    <div class="settings-setting-column"> </div>
+                </li>
+
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Version</span>
+                    </div>
+                    <div class="settings-setting-column">Latest Version</div>
+                </li>
+            </ul>
+
+
+            <ul class="settings-list">
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="fas fa-lock"></i>
+                        <span>Privacy</span>
+                    </div>
+                    <div class="settings-setting-column"> </div>
+
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="far fa-bell"></i>                        <span>Notifications</span>
+                    </div>
+                    <div class="settings-setting-column"> </div>
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="far fa-user "></i>
+                        <span>Friends</span>
+                    </div>
+                    <div class="settings-setting-column"> </div>
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="far fa-comment"></i>                        <span>Chats</span>
+                    </div>
+                    <div class="settings-setting-column"></div>
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="far fa-sun"></i>                        <span>Display</span>
+                        <span class="alt__notification badge">N</span>
+                    </div>
+                    <div class="settings-setting-column"></div>
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="fas fa-paint-roller"></i>                        <span>Themes</span>
+                        <span class="alt__notification badge">N</span>
+                    </div>
+                    <div class="settings-setting-column">Default Theme</div>
+                </li>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="fas fa-phone-volume"></i>                        
+                        
+                        <span>Call</span>
+                    </div>
+                    <div class="settings-setting-column"></div>
+                <li class="settings__setting">
+                    <div class="settings-setting-column">
+                        <i class="fas fa-phone-volume"></i>                        
+                        <span>Call</span>
+                    </div>
+                    <div class="settings-setting-column"></div>
+                </li>
+            </ul>
+         </main>
+         {%endblock%}
+        <!-- <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__btn"><a class="nav__link" href="friends.html">
+                    <i class="far fa-user fa-2x"></i></a></li>
+                <li class="nav__btn"><a class="nav__link" href="chats.html">
+                    <span class="nav__notification badge">1</span>
+                    <i class="far fa-comment fa-2x"></i></a></li>
+                <li class="nav__btn"><a class="nav__link" href="find.html">
+                    <i class="fas fa-search fa-2x"></i></a></li>
+                <li class="nav__btn"><a class="nav__link" href="more.html">
+                    <div class="nav__notification__little"></div>
+                    <i class="fas fa-ellipsis-h fa-2x"></i></a></li>
+            </ul>
+        </nav>
+        <div class="no-mobile">
+            <span>Your screen too big</span>
+        </div>
+        <script src="https://kit.fontawesome.com/7d7d69e213.js" crossorigin="anonymous">
+        </script>
+    </body>
+</html> -->

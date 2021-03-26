@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,15 +20,16 @@
             <i class="fas fa-battery-full fa-lg"></i>
             <i class="fas fa-bolt"></i> 
         </div>
-    </div>
-
+    </div> -->
+    {% extends 'base/base.html' %}
+    {% block content%}
     <header class="screen-header">
         <h1 class="screen-header__title">Chats</h1>
         <div class="screen-header__icons">
             <span><i class="fas fa-search fa-lg"></i></span>
             <span><i class="far fa-comment-dots fa-lg"></i></span>
             <span><i class="fas fa-music fa-lg"></i></span>
-            <span><a href="settings.html">
+            <span><a href="{{ url_for('main.usersetting') }}">
                 <i class="fas fa-cog fa-lg"></i></span>
             </a></span>
         </div>
@@ -55,10 +56,10 @@
         {% endfor %}
     </a>
     </main>
+    {%endblock%}
 
 
-
-    <nav class="nav">
+    <!-- <nav class="nav">
         <ul class="nav__list">
             <li class="nav__btn"><a class="nav__link" href="{{url_for('main.login')}}">
                 <i class="far fa-user fa-2x"></i></a></li>
@@ -78,4 +79,4 @@
     <script src="https://kit.fontawesome.com/7d7d69e213.js" crossorigin="anonymous">
     </script>
 </body>
-</html>
+</html> -->
