@@ -53,21 +53,22 @@
             <div class="friends-screen__channel-header">
                 <span>Channel</span><i class="fas fa-chevron-up"></i>
             </div>
-
+            {% for company in companys %}
             <div class="user-component">
                 <div class="user-component__column">
                     <img src="{{ url_for('static', filename='images/seoul_bike.png') }}" class="user-component__avatar user-component__avatar--sm" />
                     <div class="user-component__text">
-                        <h4 class="user-component__title user-component__title--not-bold">서울자전거-따릉이</h4>
+                        <h4 class="user-component__title user-component__title--not-bold"><a href="{{url_for('chat.chatstart', company=company.id)}}">{{company.companyname}}</a></h4>
                     </div>
                 </div>
                 <div class="user-component__column">
                     <div> 
-                        <span>2</span>
+                        <span>1</span>
                         <i class="fas fa-chevron-right fa-xs"></i>
                     </div>
                 </div>
             </div>
+            {%endfor%}
         </div>
     </main>
 
@@ -75,7 +76,7 @@
 
     <nav class="nav">
         <ul class="nav__list">
-            <li class="nav__btn"><a class="nav__link" href="friends.html"><i class="fas fa-user fa-2x"></i></a></li>
+            <li class="nav__btn"><a class="nav__link" href="{{ url_for('main.login') }}"><i class="fas fa-user fa-2x"></i></a></li>
             <li class="nav__btn"><a class="nav__link" href="{{ url_for('chat.chats') }}">
                 <span class="nav__notification badge">1</span>
                 <i class="far fa-comment fa-2x"></i></a></li>

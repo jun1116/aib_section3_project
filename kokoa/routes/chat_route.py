@@ -19,9 +19,9 @@ def chats():
 @bp.route('/chatdetail/<int:room_id>')#주고받은 메시지 띄울 페이지
 def chatdetail(room_id):
     room = Room.query.get(room_id)
-    chats = Chat.query.filter(Chat.room_id==room_id).all()
+    chats = Chat.query.filter(Chat.room_id==room_id).order_by(Chat.time).all()
     company = Company.query.get(room.company_id)
-    print(chats)
+    # print(chats)
     session['room_id']=room.id
     return render_template('chatdetail.html',companyname=company.companyname ,room=room,chats=chats)
 
@@ -36,3 +36,35 @@ def reply():
     db.session.commit()
     return chatdetail(session['room_id'])
 
+@bp.route('/deletechat')
+def deletechat():
+    # print(request.form)
+    # print(session['room_id'])
+    room = Room.query.get(session['room_id'])
+    db.session.delete(room)
+    # db.session.commit()
+    return chats()
+
+@bp.route('/chatstart', methods=['GET'])
+def chatstart():
+    # get_company = request.args['company']
+    # company_id = int(get_company.split()[3][0])
+    # company_id = 
+    print('user : ', session['user_id'])
+    # print(request.args)
+    company_id = int(request.args['company'])
+    #1. 채팅방 찾기
+    room = Room.query.filter(Room.user_id==session['user_id'], Room.company_id==company_id).first()
+    print('Finded Room : ',room)
+    
+    #이미 채팅방이 있다 -> 해당채팅방으로
+    if room:
+        return chatdetail(room.id)
+    else: #채팅방이 없다 -> 채팅방 생성, 회사의 안녕채팅 등록 -> 채팅방으로 이동
+        room = Room(user_id=session['user_id'], company_id=company_id)
+        db.session.add(room)
+        db_room = Room.query.filter(Room.user_id==session['user_id'], Room.company_id==company_id).first()
+        greetingchat = Chat(room_id=db_room.id, isuser=0, text=f'안녕하세요. {Company.query.get(company_id).companyname}입니다.')
+        db.session.add(greetingchat)
+        db.session.commit()
+        return chatdetail(db_room.id)

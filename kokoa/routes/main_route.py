@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, session, g, url_for
 # from twit_app.utils import main_funcs
-from kokoa.models.user_model import User
+from kokoa.models.user_model import User, Company
 # from kokoa.forms import UserCreateForm
 # from services.embedding_api import compare
 
@@ -42,16 +42,27 @@ def signup():
             # flash('이미 존재하는 사용자입니다')
             # return '이미 존재하는 username입니다.'
     return 'gggggg'
-    
-@bp.route('/login/', methods=['GET','POST'])
+
+# @bp.route('/logedin/')
+# def logedin():
+
+#     return render_template('friends.html',user=user, g=g)
+
+@bp.route('/login', methods=['GET','POST'])#로그인화면에서입장
+@bp.route('/friends/', methods=['GET','POST'])#이후 화면에서 friends로 돌아옴
 def login():
     print("login input : ",request.form)
+    companys = Company.query.all()
+    print(session)
+    if session.get('user_id'):# 이미 로그인 된 경우
+        user = User.query.get(session['user_id'])
+        return render_template('friends.html',user=user, g=g, companys=companys)
+
     username=request.form['username']
     password=request.form['password']
     user = User.query.filter_by(username=username ).first()
-    if not user: #입력된 이름의 유저가 없는경우
-        return '존재하지 않는 유저입니다. Username을 확인하거나, 회원가입을 진행하세요'
-        # return redirect(url_for('main.index'))
+    if not user: #입력된 이름의 유저 db에 없는경우
+        return f'<script> alert("존재하지 않는 유저입니다. Username을 확인하거나, 회원가입을 진행하세요"); location.href="/" </script>'
     else: #존재하는 유저에 대한 입력
         input_pwd = generate_password_hash(password)
         if check_password_hash(user.password, password):
@@ -59,7 +70,7 @@ def login():
             session.clear()
             session['user_id'] = user.id
             print(session, g)
-            return render_template('friends.html',user=user, g=g)
+            return render_template('friends.html',user=user, g=g, companys=companys)
         else:
             # 'password 가 틀렸습니다.'
             return f'<script> alert("비밀번호가 틀렸습니다."); location.href="/" </script>'
@@ -69,6 +80,7 @@ def login():
 @bp.route('/logout/')
 def logout():
     session.clear()
+    print(session)
     return redirect(url_for('main.index'))
 
 
