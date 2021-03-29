@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, request, flash, session, g, url_for
 # from twit_app.utils import main_funcs
-from kokoa.models.user_model import User, Company, Room
+from kokoa.models.user_model import User, Company, Room, SubwayPassenger
 # from kokoa.forms import UserCreateForm
 # from services.embedding_api import compare
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 from kokoa import db
+import pandas as pd
 
 bp = Blueprint('main', __name__)
 
@@ -42,11 +43,6 @@ def signup():
             # flash('이미 존재하는 사용자입니다')
             # return '이미 존재하는 username입니다.'
     return f'<script> alert("오류. 다시 시작하세요"); location.href="/" </script>'
-
-# @bp.route('/logedin/')
-# def logedin():
-
-#     return render_template('friends.html',user=user, g=g)
 
 @bp.route('/login', methods=['GET','POST'])#로그인화면에서입장
 @bp.route('/friends/', methods=['GET','POST'])#이후 화면에서 friends로 돌아옴
@@ -101,58 +97,12 @@ def userdelete():
         db.session.delete(room)
     db.session.commit()
     return logout()
-# @bp.route('/friends/')
-# def 
 
-# @bp.route('/compare', methods=["GET", "POST"])
-# def compare_index():
-#     """
-#     users 에 유저들을 담아 넘겨주세요. 각 유저 항목은 다음과 같은 딕셔너리
-#     형태로 넘겨주셔야 합니다.
-#      -  {
-#             "id" : "유저의 아이디 값이 담긴 숫자",
-#             "username" : "유저의 유저이름 (username) 이 담긴 문자열"
-#         }
+@bp.route('/updateSubway')#월별 시간별 지하철 승하차인원 데이터 (2019,2020 평균) 로드
+def updateSubway():
+    sub = pd.read_csv('https://blog.kakaocdn.net/dn/cmDivW/btq1lb1aH3p/xnB8ylQePEudFkuz4x9iak/subway_date.csv?attach=1&knm=tfile.csv').to_dict(orient='records')
+    for i in sub:
+        db.session.add(SubwayPassenger(month=i['month'],hour=i['hour'],holiday=i['휴일'],insub=int(float(i['승차'])), outsub= int(float(i['하차']))) )
+    db.session.commit()
+    return redirect(url_for('chat.chats'))
 
-#     prediction 은 다음과 같은 딕셔너리 형태로 넘겨주셔야 합니다:
-#      -   {
-#              "result" : "예측 결과를 담은 문자열입니다",
-#              "compare_text" : "사용자가 넘겨준 비교 문장을 담은 문자열입니다"
-#          }
-#     """
-#     user_list = user_model.User.query
-
-#     users = user_model.User.query
-#     prediction = {'result':' ','compare_text':' '}##
-#     if request.method == "POST":
-#         # print(request.form)
-#         user_1_id = request.form['user_1']
-#         user_2_id = request.form['user_2']
-#         text = request.form['compare_text']
-#         # POST 일 경우에 필요한 코드를 작성해 주세요
-#         # print(request.form)
-        
-#         user1 = user_model.User.query.get(user_1_id)
-#         user2 = user_model.User.query.get(user_2_id)
-#         # print(user1.tweet, user2)
-#         pred = main_funcs.predict_text([user1,user2], text)
-#         # print(pred)
-#         prediction['result'] = pred
-#         prediction['compare_text'] = text
-        
-#     return render_template('compare_user.html', users=users, prediction=prediction)
-
-
-# @bp.route('/user')
-# def user_index():
-#     """
-#     user_list 에 유저들을 담아 템플렛 파일에 넘겨주세요
-#     """
-
-#     msg_code = request.args.get('msg_code', None)
-    
-#     alert_msg = main_funcs.msg_processor(msg_code) if msg_code is not None else None
-    
-#     user_list = user_model.User.query
-
-#     return render_template('user.html', alert_msg=alert_msg, user_list=user_list)

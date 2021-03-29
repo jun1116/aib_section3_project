@@ -24,13 +24,15 @@ def create_app(config=None):
 
     from kokoa.routes import main_route
     from kokoa.routes import chat_route
-    # from twit_app.routes import user_route
+    from kokoa.routes import find_route
 
     app.register_blueprint(main_route.bp)
     app.register_blueprint(chat_route.bp)
+    app.register_blueprint(find_route.bp)
     # app.register_blueprint(user_route.bp, url_prefix='/user')
 
     app.secret_key = 'super'
+
     return app
 
 if __name__ == "__main__":

@@ -43,6 +43,15 @@ class Chat(db.Model):
     def __repr__(self):
         return f"chat_id : {self.id}, text : {self.text}, room_id : {self.room_id}"
 
+class SubwayPassenger(db.Model):
+    __tablename__:'subwaypassenger'
+    id=db.Column(db.Integer, primary_key = True)
+    month = db.Column(db.Integer(), nullable=False)
+    hour = db.Column(db.Integer(), nullable=False)
+    holiday = db.Column(db.Boolean(), nullable=False)
+    insub = db.Column(db.Integer(), nullable=False)
+    outsub = db.Column(db.Integer(), nullable=False)
     
-    
+    def __repr__(self):
+        return f"month:{self.month}, hour:{self.hour}, holiday:{self.holiday}, insub:{self.insub}"
     # embedding = db.Column(db.PickleType,nullable=True)

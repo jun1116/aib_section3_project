@@ -43,13 +43,12 @@
                 <img src="profile.jpg" class="user-component__avatar user-component__avatar" />
                 <div class="user-component__text">
                     <h4 class="user-component__title">{{room['company_name']}}</h4>
-                  <h6 class="user-component__subtitle">{{room['text']}}</h6>    
+                  <h6 class="user-component__subtitle">{{room['last_chat'].text}}</h6>    
                 </div>
             </div>
             <div class="user-component__column">
-                <span class="user-component__time">21:22</span>
+                <span class="user-component__time">{{room['last_chat'].time.hour}}:{{room['last_chat'].time.minute}}</span>
                 <span class="badge">1</span>
-                
             </div>
         </div>
         <br>

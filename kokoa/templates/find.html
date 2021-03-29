@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% block content%}
+    <header class="screen-header">
+        <h1 class="screen-header__title">Find</h1>
+        <div class="screen-header__icons">
+            <span><i class="fas fa-search fa-lg"></i></span>
+            <span>
+                <div class="nav__notification__little"></div>
+                <a href="{{ url_for('main.usersetting') }}">
+                    <i class="fas fa-cog fa-lg"></i></span>
+                </a></span>
+            
+        </div>
+    </header>
+
+    
+    <main class="main-screen ">
+        <div class="icon-row">
+            <div class="icon-row__icon">
+                <i class="fas fa-qrcode"></i>
+                <span>QR Code</span>
+            </div>
+            <div class="icon-row__icon">
+                <i class="far fa-address-book"></i>
+                <span>Add by Contacts</span>
+            </div>
+            <div class="icon-row__icon">
+                <i class="fas fa-fingerprint"></i>
+                <span>Add by ID</span></div>
+            <div class="icon-row__icon">
+                <i class="far fa-envelope"></i>
+                <span>Invite</span></div>
+        </div>
+<div class="recommended-friends">
+    <h6 class="recommended-friends__title">Recommended Friends</h6>
+    <span>You have no recommended friends.</span>
+</div>
+<div class="open-chat">
+    <div class="open-chat__header">
+        <h4 class="open-chat__title">Open Chat</h4>
+        <span>Go to Openchat Home <i class="fas fa-chevron-right fa-xs"></i></span>
+    </div>
+    <div class="open-post">
+        <div class="open-post__column">
+            <h5 class="open-post__title">#BTS</h5>
+            <h6 class="open-post__hashtags">#bts#army#friends</h6>
+            <div class="open-post__members">
+                <img src="profile.jpg"/>
+                <span class="open-post__member-count">80 members</span>
+                <div class="divider"></div>
+                <span class="open-post__member-status">Active</span>
+            </div>
+        </div>
+
+        <div class="open-post__column">
+            <div class="open-post__photo">
+                <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.0-1/p720x720/101894270_2728622424039184_2590823164569190400_o.jpg?_nc_cat=106&_nc_sid=dbb9e7&_nc_ohc=yX_tNShA_zkAX9ACsHk&_nc_ht=scontent-ssn1-1.xx&tp=6&oh=8ab29799a4f48e746f33ef1c9b710bba&oe=5FAD7D34"/>
+                <div class="open-post__heart-count">
+                    <i class="fas fa-heart fa-xs"></i>
+                    <span>326</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="open-post">
+        <div class="open-post__column">
+            <h5 class="open-post__title">#BTS</h5>
+            <h6 class="open-post__hashtags">#bts#army#friends</h6>
+            <div class="open-post__members">
+                <img src="profile.jpg"/>
+                <span class="open-post__member-count">80 members</span>
+                <div class="divider"></div>
+                <span class="open-post__member-status">Active</span>
+            </div>
+        </div>
+        <div class="open-post__column">
+            <div class="open-post__photo">
+                <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.0-1/p720x720/101894270_2728622424039184_2590823164569190400_o.jpg?_nc_cat=106&_nc_sid=dbb9e7&_nc_ohc=yX_tNShA_zkAX9ACsHk&_nc_ht=scontent-ssn1-1.xx&tp=6&oh=8ab29799a4f48e746f33ef1c9b710bba&oe=5FAD7D34"/>
+                <div class="open-post__heart-count">
+                    <i class="fas fa-heart fa-xs"></i>
+                    <span>326</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+    {%endblock%}
+

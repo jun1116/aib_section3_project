@@ -21,7 +21,7 @@
             <i class="fas fa-bolt"></i> 
         </div>
     </div>
-    
+
     <header class="welcome-header">
         <h1 class="welcome-header__title" >Welcome to Kokoa Clone</h1>
         <p class="welcome-header__text" >If you have a Kokoa Account, log in with your email or phone number.</p>
@@ -31,11 +31,14 @@
     <form name='form' id="login-form" method="post">
         <input name="username" type="text" required placeholder="Name"/>
         <input name = "password" type="text" required placeholder="Password"/>
-        <input type='submit' value="Log In" onclick="javascript: form.action='/friends/';" />
+        <input type='submit' value="User Log In" onclick="javascript: form.action='/friends/';" />
+        <!-- <input type='submit' value="Company Log In" onclick="javascript: form.action='/friends/';" /> -->
         <input type='submit' value="Sign Up" onclick="javascript: form.action='/signup';"/>
         <a href="#">Find Kokoa Account or Password</a>
     </form>
-   
+   <div id="splash-screen">
+        <i class="fas fa-comment "></i>
+    </div> 
     <!-- <div class="no-mobile">
         <span>Your screen too big</span>
     </div> -->

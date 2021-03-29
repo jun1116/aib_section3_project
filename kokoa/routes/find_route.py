@@ -1,4 +1,4 @@
-# from flask import Blueprint, request, redirect, url_for, Response
+from flask import Blueprint, request, redirect, url_for, Response,render_template, session
 # from twit_app.services import tweepy_api, embedding_api
 # from twit_app.models import user_model, tweet_model
 # from twit_app.services import tweepy_api, embedding_api
@@ -6,8 +6,12 @@
 # import re
 # # from twit_app.services.embedding_api import get_embeddings
 
-# bp = Blueprint('user', __name__)
+bp = Blueprint('find', __name__)
 
+@bp.route('/find')
+def findmain():
+    print(session['user_id'],session['room_id'])
+    return render_template('find.html')
 
 # @bp.route('/user', methods=['POST'])
 # def add_user():
