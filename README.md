@@ -48,15 +48,21 @@ CodeStates_AI_Bootcamp_Section_3_Project_Repo
 |-- requirements.txt
 |-- runtime.txt
 ```
+![데이터베이스 스키마](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/db_scheme.png?raw=true)
 
 > 각종 업체 또는 단체의 챗봇을 제공하는 것을 주요 기능으로 합니다.  
 현재 강남역 근처 따릉이를 운영하는 가상의 사업체를 가정하여 그를 통해 정보를 받아보는 것을 구현하였습니다. 
 
 ## 주요 기능
 ### 로그인, 로그아웃 및 계정 삭제
+
+첫화면 | 이미존재하는 계정|계정 생성 성공 | 비밀번호 실패
+:---:|:---:|:---:|:---:
+![](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-03-31%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%201.31.26.png?raw=true)|![](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/login_1_%EC%9D%B4%EB%AF%B8%EC%A1%B4%EC%9E%AC%ED%95%98%EB%8A%94%EA%B3%84%EC%A0%95.png?raw=true) | ![](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/login_2_%EA%B3%84%EC%A0%95%EC%83%9D%EC%84%B1%EC%84%B1%EA%B3%B5.png) | ![](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/login_3_%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%EC%8B%A4%ED%8C%A8.png)
+
 기본 화면에서 만들고 싶은 계정의 이름과 비밀번호 입력후, Sign Up 버튼을 통하여 계정 생성을 할 수 있으며, 그렇게 계정을 생성한 후, Log In 버튼을 사용하여 해당 계정으로 로그인 합니다.   
 위 과정에서 이미 존재하는 이름의 계정을 사용할 경우 유저생성에 실패하며 다른 이름을 사용해야하며, 로그인과정에서 비밀번호가 틀릴 경우 또한, 다시 로그인을 진행해야합니다.
-___
+
 ### 로그인 후 첫 화면
 현재 채팅이 가능한 회사들의 목록을 확인할 수 있으며, 해당 회사를 클릭하여 새로운 채팅을 진행할 수 있습니다.
 
