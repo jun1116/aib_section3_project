@@ -48,7 +48,8 @@ CodeStates_AI_Bootcamp_Section_3_Project_Repo
 |-- requirements.txt
 |-- runtime.txt
 ```
-![데이터베이스 스키마](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/db_scheme.png?raw=true)
+
+<center><img src="https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/db_scheme.png?raw=true" width="500" height="300"></center>
 
 > 각종 업체 또는 단체의 챗봇을 제공하는 것을 주요 기능으로 합니다.  
 현재 강남역 근처 따릉이를 운영하는 가상의 사업체를 가정하여 그를 통해 정보를 받아보는 것을 구현하였습니다. 
@@ -84,7 +85,7 @@ CodeStates_AI_Bootcamp_Section_3_Project_Repo
 위 화면에서 채팅창에 입력을 통하여 메시지를 주고받을 수 있으며, 대화를 마치고나면 뒤로가기버튼 (<) 또는 휴지통버튼을 통하여, 채팅목록으로 돌아가거나, 해당 채팅내역을 삭제할 수 있습니다. 
 
 ### 채팅방 목록
-![로그인후첫화면](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/chats_1_%EC%B1%84%ED%8C%85%EB%B0%A9%EB%AA%A9%EB%A1%9D.png){: width="300" height="300"){: .center}
+<center><img src="https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/chats_1_%EC%B1%84%ED%8C%85%EB%B0%A9%EB%AA%A9%EB%A1%9D.png" width="300" height="300"></center>
 로그인한 계정을 기반으로, 해당 계정이 현재까지 나눈 대화목록과 마지막 메시지, 시간을 확인할 수 있습니다.  
 기존에 대화를 마치고, 삭제한 경우 위 화면에 나타나지 않습니다.
 
@@ -93,6 +94,6 @@ CodeStates_AI_Bootcamp_Section_3_Project_Repo
 향후, 대화를 나눈 회사들의 정보들이나, 공지사항 등을 모아볼 수 있는 기능으로 확장시킬 계획입니다. 
 
 ### SETTING페이지
-![로그인후첫화면](https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/setting_1_.png){: width="300" height="300"){: .center}
+<center><img src="https://github.com/jun1116/aib_section3_project/blob/main/imagesFolder/setting_1_.png" width="300" height="300"></center>
 해당 페이지에서 로그아웃과, 계정 삭제를 진행할 수 있습니다. 
 이외의 버튼들은 기능이 구현되지 않은 버튼들입니다.
