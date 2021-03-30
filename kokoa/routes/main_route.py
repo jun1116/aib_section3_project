@@ -8,6 +8,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 from kokoa import db
 import pandas as pd
+# from urllib.request import urlretrieve
+import pickle
+
 
 bp = Blueprint('main', __name__)
 
@@ -104,5 +107,13 @@ def updateSubway():
     for i in sub:
         db.session.add(SubwayPassenger(month=i['month'],hour=i['hour'],holiday=i['휴일'],insub=int(float(i['승차'])), outsub= int(float(i['하차']))) )
     db.session.commit()
+    return redirect(url_for('chat.chats'))
+
+@bp.route('/updateModel')
+def updateModel():
+    # model = 
+    urlretrieve('https://blog.kakaocdn.net/dn/M976c/btq1laBtmQ3/XxmZ0qEixddI2DMrLHg890/lgb.pkl?attach=1&knm=tfile.pkl', "./lgb.pkl")
+    lgb= joblib.load('./lgb.pkl')  
+    # pickle.load(open('./lgb.pkl','rb'))
     return redirect(url_for('chat.chats'))
 

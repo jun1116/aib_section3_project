@@ -55,3 +55,9 @@ class SubwayPassenger(db.Model):
     def __repr__(self):
         return f"month:{self.month}, hour:{self.hour}, holiday:{self.holiday}, insub:{self.insub}"
     # embedding = db.Column(db.PickleType,nullable=True)
+
+class MLModel(db.Model):
+    __tablename__ = 'MLModel'
+    id=db.Column(db.Integer, primary_key = True)
+    model = db.Column(db.PickleType, nullable=False)
+

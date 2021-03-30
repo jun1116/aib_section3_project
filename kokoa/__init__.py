@@ -29,7 +29,7 @@ def create_app(config=None):
     app.register_blueprint(main_route.bp)
     app.register_blueprint(chat_route.bp)
     app.register_blueprint(find_route.bp)
-    # app.register_blueprint(user_route.bp, url_prefix='/user')
+    
 
     app.secret_key = 'super'
 

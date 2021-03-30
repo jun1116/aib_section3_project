@@ -65,10 +65,9 @@
                         <i class="fas fa-info-circle"></i>
                         <span>Version</span>
                     </div>
-                    <div class="settings-setting-column">Latest Version</div>
+                    <div class="settings-setting-column">Beta Version</div>
                 </li>
             </ul>
-
 
             <ul class="settings-list">
                 <li class="settings__setting">
@@ -77,7 +76,6 @@
                         <span>Privacy</span>
                     </div>
                     <div class="settings-setting-column"> </div>
-
                 </li>
                 <li class="settings__setting">
                     <div class="settings-setting-column">
@@ -114,8 +112,10 @@
                 </li>
                 <li class="settings__setting">
                     <div class="settings-setting-column">
-                        <i class="fas fa-phone-volume"></i>
-                        <span>Call</span>
+                        <a href="{{url_for('main.updateModel')}}">
+                            <i class="fas fa-phone-volume"></i>
+                            <span>Update Model</span>
+                        </a>
                     </div>
                     <div class="settings-setting-column"></div>
                 <li class="settings__setting">

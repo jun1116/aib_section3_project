@@ -1,5 +1,9 @@
 import requests
 from datetime import datetime
+import lightgbm
+import joblib
+from kokoa.models.user_model import SubwayPassenger
+from datetime import datetime
 
 def gangnamBike(q=None):
     if q:
@@ -9,10 +13,12 @@ def gangnamBike(q=None):
             w = getWeather()
             return f"현재기온 : {w['temp']}도 , 습도 : {w['humid']}, 풍속 : {w['wind']}, 강수 : {w['rain']}, 적설 : {w['snow']}"
         elif q=='3':#강남역인근 코로나확진자수
-            return getCoronaToday()
+            today,cnt,gang = getCoronaToday()
+            return f"[최신]서울시의 {today} 확진자 수는 {cnt}명, 역근처인 강남구 및 서초구의 촥진자 수는 {gang}명 입니다. 데이터는 매일 오전 11시 갱신됩니다."
+            # return getCoronaToday()
         elif q=='4':
             #TODO 이후 대여량 예측에 대한 모델 답변이 들어갈 부분
-            return '444'
+            return getNextPredict()
         else:
             return greeting()
     else:#Greeting with Question List
@@ -53,7 +59,7 @@ def getWeather():
     except:
         snow = 0
     return {'temp':temperature, 'humid':humidity,'wind':wind_speed,'rain':rain,'snow':snow}
-    
+
 def getCoronaToday():
     KEY = '62744744686579653130355443705368'
     corurl=f'http://openapi.seoul.go.kr:8088/{KEY}/json/Corona19Status/1/999/'
@@ -68,4 +74,23 @@ def getCoronaToday():
             cnt+=1
             if i['CORONA19_AREA']=='강남구' or i['CORONA19_AREA']=='서초구':
                 gang+=1
-    return f"[최신]서울시의 {today} 확진자 수는 {cnt}명, 역근처인 강남구 및 서초구의 촥진자 수는 {gang}명 입니다. 데이터는 매일 오전 11시 갱신됩니다."
+    return today,cnt,gang
+    # return f"[최신]서울시의 {today} 확진자 수는 {cnt}명, 역근처인 강남구 및 서초구의 촥진자 수는 {gang}명 입니다. 데이터는 매일 오전 11시 갱신됩니다."
+
+def getNextPredict():
+    lgb= joblib.load('./lgb.pkl')
+    _, cnt ,gang = getCoronaToday()
+    w = getWeather() #temp, humid, wind, rain, snow
+    bikenow = getBikeNow()
+    if datetime.now().weekday():#평일 ==1
+        holiday = False
+    else: holiday = True
+    hour = datetime.now().hour #시간
+    month = datetime.now().month #월
+    day = datetime.now().day #일
+    subway = SubwayPassenger.query.filter(SubwayPassenger.hour==hour, SubwayPassenger.month==month).filter(SubwayPassenger.holiday==holiday).first()
+    # 기온	강수량	풍속	습도	적설	month	day	hour	코로나확진자수	승차	하차	휴일
+    modelinput = [[w['temp'],w['rain'],w['wind'],w['humid'],w['snow'],month,day,hour,gang,subway.insub, subway.outsub, holiday  ]]
+    pred = int(lgb.predict(modelinput))
+    return f"다음 1시간 동안 {pred}대의 대여량이 발생할 것으로 예측됩니다."
+
