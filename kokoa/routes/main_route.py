@@ -117,3 +117,4 @@ def updateModel():
     # pickle.load(open('./lgb.pkl','rb'))
     return redirect(url_for('chat.chats'))
 
+

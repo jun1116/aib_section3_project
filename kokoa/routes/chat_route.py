@@ -43,18 +43,16 @@ def reply():
 
         # TODO : 회사의 답변을 등록해야함
         db_room = Room.query.get(session['room_id'])
-        company = Company.query.filter(Company.id==db_room.id).first()
+        company = Company.query.get(db_room.company_id)
         answer = company_answer(company.id, text)
-        # company_answer = gangnamBike(text)
+        
         if answer:
             db.session.add(Chat(room_id=session['room_id'], text=answer, isuser=0))
-            db.session.commit()
+        db.session.commit()
     return chatdetail(session['room_id'])
 
 @bp.route('/deletechat')
 def deletechat():
-    # print(request.form)
-    # print(session['room_id'])
     room = Room.query.get(session['room_id'])
     db.session.delete(room)
     db.session.commit()
@@ -77,7 +75,7 @@ def chatstart():
         db.session.add(room)
         db_room = Room.query.filter(Room.user_id==session['user_id'], Room.company_id==company_id).first()
         greetingchat1 = Chat(room_id=db_room.id, isuser=0, text=f'안녕하세요. {Company.query.get(company_id).companyname}입니다.')
-        greetingchat2 = Chat(room_id=db_room.id, isuser=0, text=company_answer(db_room.id))
+        greetingchat2 = Chat(room_id=db_room.id, isuser=0, text=company_answer(db_room.company_id))
         db.session.add(greetingchat1)
         db.session.add(greetingchat2)
         db.session.commit()
