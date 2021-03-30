@@ -63,16 +63,12 @@ def deletechat():
 
 @bp.route('/chatstart', methods=['GET']) #Friends화면의 회사를 눌러서 채팅 시작 -> 채팅이 이미 있는경우 해당 방 입장, 없는경우 방생성 & 환영인사생성
 def chatstart():
-    # get_company = request.args['company']
-    # company_id = int(get_company.split()[3][0])
-    # company_id = 
     print('user : ', session['user_id'])
-    # print(request.args)
+
     company_id = int(request.args['company'])
     #1. 채팅방 찾기
     room = Room.query.filter(Room.user_id==session['user_id'], Room.company_id==company_id).first()
-    print('Finded Room : ',room)
-    
+
     #이미 채팅방이 있다 -> 해당채팅방으로
     if room:
         return chatdetail(room.id)

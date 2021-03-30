@@ -35,7 +35,7 @@ class Room(db.Model):
 class Chat(db.Model):
     __tablename__ = 'chat'
     id = db.Column(db.Integer, primary_key = True)
-    text= db.Column(db.String(150), nullable=False)
+    text= db.Column(db.String(150))
     room_id = db.Column(db.Integer(), db.ForeignKey('room.id', ondelete='CASCADE'))
     isuser = db.Column(db.Boolean(), nullable=False)
     time = db.Column(db.DateTime, default=datetime.now)
