@@ -54,6 +54,7 @@ CodeStates_AI_Bootcamp_Section_3_Project_Repo
 > 각종 업체 또는 단체의 챗봇을 제공하는 것을 주요 기능으로 합니다.  
 현재 강남역 근처 따릉이를 운영하는 가상의 사업체를 가정하여 그를 통해 정보를 받아보는 것을 구현하였습니다. 
 
+> 배포 : https://arcane-oasis-17039.herokuapp.com/
 ## 주요 기능
 ### 로그인, 로그아웃 및 계정 삭제
 
